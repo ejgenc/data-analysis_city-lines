@@ -1,0 +1,12 @@
+id,name
+0,default
+1,high_speed_rail
+2,inter_city_rail
+3,commuter_rail
+4,heavy_rail
+5,light_rail
+6,brt
+7,people_mover
+8,bus
+9,tram
+10,ferry
