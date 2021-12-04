@@ -1,0 +1,15 @@
+name: city-lines-env
+channels:
+  - defaults
+dependencies:
+  - python=3.9.7
+  - numpy
+  - pandas
+  - matplotlib
+  - geopandas
+  - sqlalchemy
+  - doit
+  - pip
+  - pip:
+    - -e .
+    - mysql-connector-python
