@@ -19,12 +19,21 @@ cursor.execute('SET GLOBAL max_allowed_packet=67108864')
 # Change data types
 sql_query = """
 ALTER TABLE station_lines
-     MODIFY created_at TIMESTAMP NULL,
-     MODIFY updated_at TIMESTAMP NULL;
+MODIFY created_at TIMESTAMP NULL,
+MODIFY updated_at TIMESTAMP NULL;
 """
 cursor.execute(sql_query)
 
 # Clean the 'tracks' table
+# Change data types
+sql_query = """
+ALTER TABLE tracks
+MODIFY buildstart SMALLINT UNSIGNED NULL,
+MODIFY opening SMALLINT UNSIGNED NULL,
+MODIFY closure SMALLINT UNSIGNED NULL;
+ """
+cursor.execute(sql_query)
+
 # Clean illogical values & fix null duplicacy
 sql_query = """
 UPDATE tracks
@@ -36,10 +45,11 @@ UPDATE tracks
 UPDATE tracks
    SET closure = NULL
  WHERE closure <= 1800 OR closure >= 2021;
+ UPDATE tracks
+    SET length = NULL
+  WHERE length <= 0;
  """
 cursor.execute(sql_query, multi=True)
-
-# Change data types
 
 # Commit & close connection
 cursor.close()
