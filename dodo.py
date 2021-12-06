@@ -32,3 +32,11 @@ def task_import_db():
         "actions": ["python {}".format(action_path)],
         "title": show_cmd
     }
+
+def task_clean_db():
+    action_path = Path("src/data-cleaning/clean-db.py")
+    return {
+        "task_dep": ["import_db"],
+        "actions": ["python {}".format(action_path)],
+        "title": show_cmd
+    }
