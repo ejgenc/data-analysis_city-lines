@@ -10,18 +10,26 @@ credentials = {
 conn = connector.connect(user=credentials["username"],
                          passwd=credentials["password"],
                          host="localhost",
-                         database="city_lines",
-                         autocommit=True)
+                         database="city_lines")
 cursor = conn.cursor(buffered=True)
-cursor.execute("USE city_lines")
-cursor.execute('SET GLOBAL max_allowed_packet=67108864')
+sql_queries = []
+
+# Config the connection & the cursor
+sql_queries.append("USE city_lines;")
+sql_queries.append("SET GLOBAL max_allowed_packet=67108864;")
 
 # Populate the DB using the pre-existing city-lines SQL dump
 input_fp = Path("data/raw/city-lines.sql")
 with open(input_fp, encoding="utf-8") as file:
-    sql_query = file.read()
+    dump = file.read()
+for query in dump.split(";")[:-1]:
+    sql_queries.append(query)
 
-cursor.execute(sql_query, multi=True)
+
+#Execute all queries
+for query in sql_queries:
+  cursor.execute(query)
+  conn.commit()
 
 # Close connection
 cursor.close()

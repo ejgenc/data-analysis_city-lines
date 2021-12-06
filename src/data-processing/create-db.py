@@ -8,15 +8,16 @@ credentials = {
 # Establish a connection with the DBMS
 conn = connector.connect(user=credentials["username"],
                          passwd=credentials["password"],
-                         host="localhost",
-                         autocommit=True)
+                         host="localhost")
 cursor = conn.cursor(buffered=True)
+sql_queries = []
 
 # Create the DB
-sql_query = """
-CREATE DATABASE IF NOT EXISTS city_lines;
-"""
-cursor.execute(sql_query)
+sql_queries.append("CREATE DATABASE IF NOT EXISTS city_lines;")
+
+for query in sql_queries:
+  cursor.execute(query)
+  conn.commit()
 
 # Close connection
 cursor.close()

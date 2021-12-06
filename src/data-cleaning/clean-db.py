@@ -11,10 +11,11 @@ conn = connector.connect(user=credentials["username"],
                          host="localhost",
                          database="city_lines")
 cursor = conn.cursor(buffered=True)
-cursor.execute("USE city_lines")
-cursor.execute('SET GLOBAL max_allowed_packet=67108864')
-
 sql_queries = []
+
+# Config the connection & the cursor
+sql_queries.append("USE city_lines;")
+sql_queries.append("SET GLOBAL max_allowed_packet=67108864;")
 
 # Clean the 'station-lines' table
 # Change data types
