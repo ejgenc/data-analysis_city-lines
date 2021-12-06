@@ -1,8 +1,25 @@
 from pathlib import Path 
 import pandas as pd
 
-targets = [Path("data/externals/transport-modes.csv"),
-           Path("data/externals/mobile-phone-usage.csv"),
-           Path("data/externals/world-happiness-report.csv")]
+targets = [Path("data/external/mobile-phone-usage.csv"),
+           Path("data/external/world-happiness-report.csv")]
            
 datasets = [pd.read_csv(target, encoding="utf-8") for target in targets]
+
+# Clean 'mobile-phone-usage.csv'
+datasets[0] = (datasets[0]
+               .drop(["pop2021"], axis=1)
+               .rename({"numUsers": "num_users",
+                        "linesPer100": "lines_per_hundred"}, axis=1))
+
+# Clean 'world-happiness-report.csv'
+datasets[1] = (datasets[1]
+               .drop([column for column in list(datasets[1].columns) if
+                      column not in
+                      ["Country name", "Regional indicator", "Ladder score"]],
+                      axis=1)
+               .rename({"Country name": "country_name",
+                        "Regional indicator": "regional_indicator",
+                        "Ladder score": "ladder_score"}, axis=1))
+
+
