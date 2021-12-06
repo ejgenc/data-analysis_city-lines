@@ -10,7 +10,8 @@ credentials = {
 conn = connector.connect(user=credentials["username"],
                          passwd=credentials["password"],
                          host="localhost",
-                         database="city_lines")
+                         database="city_lines",
+                         autocommit=True)
 cursor = conn.cursor(buffered=True)
 cursor.execute("USE city_lines")
 cursor.execute('SET GLOBAL max_allowed_packet=67108864')
@@ -22,5 +23,6 @@ with open(input_fp, encoding="utf-8") as file:
 
 cursor.execute(sql_query, multi=True)
 
+# Close connection
 cursor.close()
 conn.close()
