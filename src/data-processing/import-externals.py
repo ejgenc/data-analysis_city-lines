@@ -1,13 +1,15 @@
 from pathlib import Path
 import mysql.connector as connector
+import sqlalchemy
+import pymysql
 import pandas as pd
 
 # Load the cleaned .csv files
-# paths = [Path("data/external/transport-modes.csv"),
-#          Path("data/cleaned/mobile-phone-usage-cleaned.csv"),
-#          Path("data/cleaned/world-happiness-report-cleaned.csv")]
+paths = [Path("data/external/transport-modes.csv"),
+         Path("data/cleaned/mobile-phone-usage-cleaned.csv"),
+         Path("data/cleaned/world-happiness-report-cleaned.csv")]
 
-# datasets = [pd.read_csv(path, encoding="utf-8") for path in paths]
+datasets = [pd.read_csv(path, encoding="utf-8") for path in paths]
 
 # Establish a connection with the DBMS
 credentials = {
@@ -30,18 +32,6 @@ sql_queries.append("SET GLOBAL max_allowed_packet=67108864;")
 # Prepare new tables for data insertion
 # Create tables
 sql_queries.append("""
-CREATE TABLE IF NOT EXISTS city_country_region (
-  PRIMARY KEY (city),
-  city VARCHAR(100) COLLATE utf8_general_ci,
-  country VARCHAR(100) COLLATE utf8_general_ci,
-  region VARCHAR(100) COLLATE utf8_general_ci,
-  INDEX (country),
-  INDEX (region)
-);
-"""
-)
-
-sql_queries.append("""
 CREATE TABLE IF NOT EXISTS transport_modes (
   PRIMARY KEY (id),
   id TINYINT,
@@ -52,9 +42,8 @@ CREATE TABLE IF NOT EXISTS transport_modes (
 sql_queries.append("""
 CREATE TABLE IF NOT EXISTS mobile_phone_usage (
   PRIMARY KEY (country),
-  FOREIGN KEY (country) REFERENCES city_country_region (country),
   country VARCHAR(100) COLLATE utf8_general_ci,
-  num_user INT UNSIGNED,
+  num_users INT UNSIGNED,
   lines_per_hundred DECIMAL(5, 2) UNSIGNED,
   INDEX (country)
 );
@@ -63,8 +52,6 @@ CREATE TABLE IF NOT EXISTS mobile_phone_usage (
 sql_queries.append("""
 CREATE TABLE IF NOT EXISTS world_happiness_report (
   PRIMARY KEY (country),
-  FOREIGN KEY (country) REFERENCES city_country_region (country),
-  FOREIGN KEY (region) REFERENCES city_country_region (region),
   country VARCHAR(100) COLLATE utf8_general_ci,
   region VARCHAR(100) COLLATE utf8_general_ci,
   ladder_score DECIMAL(5,4)
@@ -75,12 +62,12 @@ CREATE TABLE IF NOT EXISTS world_happiness_report (
 sql_queries.append("SET FOREIGN_KEY_CHECKS=0;")
 sql_queries.append("""
 ALTER TABLE cities
-ADD FOREIGN KEY (name) REFERENCES city_country_region (city),
-ADD FOREIGN KEY (country) REFERENCES city_country_region (country);
+ADD FOREIGN KEY (country) REFERENCES mobile_phone_usage (country),
+ADD FOREIGN KEY (country) REFERENCES world_happiness_report (country);
 """)
 
 sql_queries.append("""
-ALTER TABLE lines
+ALTER TABLE `lines`
 ADD FOREIGN KEY (transport_mode_id) REFERENCES transport_modes (id);
 """)
 sql_queries.append("SET FOREIGN_KEY_CHECKS=1;")
@@ -90,12 +77,16 @@ for query in sql_queries:
   cursor.execute(query)
   conn.commit()
 
-# # Populate the tables
-# datasets[0].to_sql(name="transport_modes",
-#                    con=conn,
-#                    if_exits="append",
-#                    index=False,
-#                    method=None)
+# Populate the tables
+write_engine = sqlalchemy.create_engine("mysql+pymysql://root:@localhost/city_lines?charset=utf8")
+
+table_names = ["transport_modes", "mobile_phone_usage", "world_happiness_report"]
+for dataset, table_name in zip(datasets, table_names):
+  dataset.to_sql(name=table_name,
+                 con=write_engine,
+                 if_exists="append",
+                 index=False,
+                 method=None)
 
 # Close connection
 cursor.close()
