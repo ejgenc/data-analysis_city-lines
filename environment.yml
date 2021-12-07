@@ -6,6 +6,7 @@ dependencies:
   - pandas
   - matplotlib
   - geopandas
+  - pymysql
   - sqlalchemy
   - doit
   - pip
