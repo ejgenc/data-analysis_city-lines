@@ -19,7 +19,7 @@ sql_queries.append("USE city_lines;")
 sql_queries.append("SET GLOBAL max_allowed_packet=67108864;")
 
 # Populate the DB using the pre-existing city-lines SQL dump
-input_fp = Path("data/raw/city-lines.sql")
+input_fp = Path("data/main/city-lines.sql")
 with open(input_fp, encoding="utf-8") as file:
     dump = file.read()
 for query in dump.split(";")[:-1]:

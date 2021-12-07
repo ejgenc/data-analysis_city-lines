@@ -16,9 +16,9 @@ def task_prepare():
 
 
 def task_create_db():
-    action_path = Path("src/data-processing/create-db.py")
+    action_path = Path("src/data-processing/create-main.py")
     return {
-        "file_dep": [Path("data/raw/city-lines.sql")],
+        "file_dep": [Path("data/main/city-lines.sql")],
         "task_dep": ["prepare"],
         "actions": ["python {}".format(action_path)],
         "title": show_cmd
@@ -26,7 +26,7 @@ def task_create_db():
 
 
 def task_import_db():
-    action_path = Path("src/data-processing/import-db.py")
+    action_path = Path("src/data-processing/import-main.py")
     return {
         "task_dep": ["create_db"],
         "actions": ["python {}".format(action_path)],
@@ -34,7 +34,7 @@ def task_import_db():
     }
 
 def task_clean_db():
-    action_path = Path("src/data-cleaning/clean-db.py")
+    action_path = Path("src/data-cleaning/clean-main.py")
     return {
         "task_dep": ["import_db"],
         "actions": ["python {}".format(action_path)],
