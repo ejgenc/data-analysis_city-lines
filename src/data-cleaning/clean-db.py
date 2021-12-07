@@ -22,7 +22,14 @@ sql_queries.append("SET GLOBAL max_allowed_packet=67108864;")
 sql_queries.append("""
 ALTER TABLE cities
 MODIFY name VARCHAR(100),
-MODIFY country VARCHAR(100)
+MODIFY country VARCHAR(100);
+""")
+
+# Clean the 'lines' table
+# Change data types
+sql_queries.append("""
+ALTER TABLE `lines`
+MODIFY transport_mode_id TINYINT NULL;
 """)
 
 # Clean the 'station-lines' table
