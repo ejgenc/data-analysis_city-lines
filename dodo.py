@@ -53,3 +53,10 @@ def task_clean_externals():
                     Path("data/cleaned/world-happiness-report-cleaned.csv")],
         "title": show_cmd
     }
+
+def task_teardown():
+    action_path = Path("src/utility-scripts/teardown.py")
+    return {
+        "actions": ["python {}".format(action_path)],
+        "title": show_cmd
+    }
