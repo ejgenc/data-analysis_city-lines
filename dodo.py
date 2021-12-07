@@ -40,3 +40,16 @@ def task_clean_db():
         "actions": ["python {}".format(action_path)],
         "title": show_cmd
     }
+
+def task_clean_externals():
+    action_path = Path("src/data-cleaning/clean-externals.py")
+    return {
+        "task_dep": ["clean_db"],
+        "file_dep": [Path("data/external/transport-modes.csv"),
+                     Path("data/external/mobile-phone-usage.csv"),
+                     Path("data/external/world-happiness-report.csv")],
+        "actions": ["python {}".format(action_path)],
+        "targets": [Path("data/cleaned/mobile-phone-usage-cleaned.csv"),
+                    Path("data/cleaned/world-happiness-report-cleaned.csv")],
+        "title": show_cmd
+    }
