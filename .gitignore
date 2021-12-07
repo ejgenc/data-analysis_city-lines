@@ -1,3 +1,4 @@
 .ipynb_checkpoints
 .doit*
 __pycache__/
+src.egg-info
