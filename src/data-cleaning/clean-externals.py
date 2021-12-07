@@ -19,7 +19,7 @@ datasets[1] = (datasets[1]
                       ["Country name", "Regional indicator", "Ladder score"]],
                       axis=1)
                .rename({"Country name": "country",
-                        "Regional indicator": "regional_indicator",
+                        "Regional indicator": "region",
                         "Ladder score": "ladder_score"}, axis=1))
 
 # Export data 
