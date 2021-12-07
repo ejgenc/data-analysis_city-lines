@@ -18,8 +18,13 @@ datasets[1] = (datasets[1]
                       column not in
                       ["Country name", "Regional indicator", "Ladder score"]],
                       axis=1)
-               .rename({"Country name": "country_name",
+               .rename({"Country name": "country",
                         "Regional indicator": "regional_indicator",
                         "Ladder score": "ladder_score"}, axis=1))
 
+# Export data 
+paths = [Path("data/cleaned/mobile-phone-usage-cleaned.csv"),
+         Path("data/cleaned/world-happiness-report-cleaned.csv")]
 
+for dataset, path in zip(datasets, paths):
+       dataset.to_csv(path, encoding="utf-8", index=False)
