@@ -54,6 +54,17 @@ def task_clean_externals():
         "title": show_cmd
     }
 
+def task_import_externals():
+    action_path = Path("src/data-processing/import-externals.py")
+    return {
+        "task_dep": ["clean_externals"],
+        "file_dep": [Path("data/external/transport-modes.csv"),
+                     Path("data/cleaned/mobile-phone-usage-cleaned.csv"),
+                     Path("data/cleaned/world-happiness-report-cleaned.csv")],
+        "actions": ["python {}".format(action_path)],
+        "title": show_cmd
+    }
+
 def task_teardown():
     action_path = Path("src/utility-scripts/teardown.py")
     return {
