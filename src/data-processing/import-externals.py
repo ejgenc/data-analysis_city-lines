@@ -1,13 +1,14 @@
 from pathlib import Path
 import mysql.connector as connector
 import sqlalchemy
-import pymysql
 import pandas as pd
 
 # Load the cleaned .csv files
 paths = [Path("data/external/transport-modes.csv"),
          Path("data/cleaned/mobile-phone-usage-cleaned.csv"),
-         Path("data/cleaned/world-happiness-report-cleaned.csv")]
+         Path("data/cleaned/world-happiness-report-cleaned.csv"),
+         Path("data/cleaned/education-levels-cleaned.csv"),
+         Path("data/cleaned/freedom-of-speech-cleaned.csv")]
 
 datasets = [pd.read_csv(path, encoding="utf-8") for path in paths]
 
@@ -58,12 +59,31 @@ CREATE TABLE IF NOT EXISTS world_happiness_report (
 );
 """)
 
+sql_queries.append("""
+CREATE TABLE IF NOT EXISTS education_levels (
+  PRIMARY KEY (country),
+  country VARCHAR(100) COLLATE utf8_general_ci,
+  schooled_pop INT UNSIGNED
+);
+""")
+
+sql_queries.append("""
+CREATE TABLE IF NOT EXISTS freedom_of_speech (
+  PRIMARY KEY (country),
+  country VARCHAR(100) COLLATE utf8_general_ci,
+  index_score DECIMAL(4,2),
+  rank TINYINT UNSIGNED
+);
+""")
+
 # Establish foreign key links to recently created tables
 sql_queries.append("SET FOREIGN_KEY_CHECKS=0;")
 sql_queries.append("""
 ALTER TABLE cities
 ADD FOREIGN KEY (country) REFERENCES mobile_phone_usage (country),
-ADD FOREIGN KEY (country) REFERENCES world_happiness_report (country);
+ADD FOREIGN KEY (country) REFERENCES world_happiness_report (country),
+ADD FOREIGN KEY (country) REFERENCES education_levels (country),
+ADD FOREIGN KEY (country) REFERENCES freedom_of_speech (country);
 """)
 
 sql_queries.append("""
@@ -80,7 +100,9 @@ for query in sql_queries:
 # Populate the tables
 write_engine = sqlalchemy.create_engine("mysql+pymysql://root:@localhost/city_lines?charset=utf8")
 
-table_names = ["transport_modes", "mobile_phone_usage", "world_happiness_report"]
+table_names = ["transport_modes", "mobile_phone_usage",
+               "world_happiness_report", "education_levels",
+               "freedom_of_speech"]
 for dataset, table_name in zip(datasets, table_names):
   dataset.to_sql(name=table_name,
                  con=write_engine,
