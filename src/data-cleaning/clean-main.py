@@ -38,9 +38,9 @@ MODIFY transport_mode_id TINYINT NULL;
 sql_queries.append("""
 ALTER TABLE stations
 MODIFY name VARCHAR(100),
-MODIFY buildstart SMALLINT UNSIGNED NULL,
-MODIFY opening SMALLINT UNSIGNED NULL,
-MODIFY closure SMALLINT UNSIGNED NULL;
+MODIFY buildstart SMALLINT NULL,
+MODIFY opening SMALLINT NULL,
+MODIFY closure SMALLINT NULL;
 """)
 
 # Clean the 'station-lines' table
@@ -75,6 +75,10 @@ UPDATE stations
 UPDATE stations
    SET closure = NULL
  WHERE closure <= 1800 OR closure >= 2021;
+
+UPDATE stations
+   SET name = REPLACE(name, '\n\n', '')
+ WHERE name LIKE '%\n\n%';
 
 UPDATE tracks
    SET buildstart = NULL
