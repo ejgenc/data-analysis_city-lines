@@ -22,6 +22,7 @@ sql_queries.append("SET GLOBAL max_allowed_packet=67108864;")
 sql_queries.append("""
 ALTER TABLE cities
 MODIFY name VARCHAR(100),
+MODIFY start_year SMALLINT UNSIGNED NULL,
 MODIFY country VARCHAR(100);
 """)
 
@@ -30,6 +31,16 @@ MODIFY country VARCHAR(100);
 sql_queries.append("""
 ALTER TABLE `lines`
 MODIFY transport_mode_id TINYINT NULL;
+""")
+
+# Clean the 'stations' table
+# Change data types
+sql_queries.append("""
+ALTER TABLE stations
+MODIFY name VARCHAR(100),
+MODIFY buildstart SMALLINT UNSIGNED NULL,
+MODIFY opening SMALLINT UNSIGNED NULL,
+MODIFY closure SMALLINT UNSIGNED NULL;
 """)
 
 # Clean the 'station-lines' table
@@ -53,6 +64,18 @@ sql_queries.append(sql_query)
 
 # Clean illogical values & fix null duplicacy
 sql_query = """
+UPDATE stations
+   SET buildstart = NULL
+ WHERE buildstart <= 1800 OR buildstart >= 2021;
+ 
+UPDATE stations
+   SET opening = NULL
+ WHERE opening <= 1800 OR opening >= 2021;
+ 
+UPDATE stations
+   SET closure = NULL
+ WHERE closure <= 1800 OR closure >= 2021;
+
 UPDATE tracks
    SET buildstart = NULL
  WHERE buildstart <= 1800 OR buildstart >= 2021;
