@@ -7,7 +7,7 @@ import pandas as pd
 paths = [Path("data/external/transport-modes.csv"),
          Path("data/cleaned/mobile-phone-usage-cleaned.csv"),
          Path("data/cleaned/world-happiness-report-cleaned.csv"),
-         Path("data/cleaned/education-levels-cleaned.csv"),
+         Path("data/external/education-index.csv"),
          Path("data/cleaned/freedom-of-speech-cleaned.csv")]
 
 datasets = [pd.read_csv(path, encoding="utf-8") for path in paths]
@@ -62,8 +62,9 @@ CREATE TABLE IF NOT EXISTS world_happiness_report (
 sql_queries.append("""
 CREATE TABLE IF NOT EXISTS education_levels (
   PRIMARY KEY (country),
-  country VARCHAR(100) COLLATE utf8_general_ci,
-  schooled_pop INT UNSIGNED
+  country varchar(100) COLLATE utf8_general_ci,
+  rank INT UNSIGNED DEFAULT NULL,
+  education_index DECIMAL(4,2) DEFAULT NUll
 );
 """)
 

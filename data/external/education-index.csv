@@ -1,0 +1,190 @@
+country,rank,education_index
+Germany,1,0.94
+Australia,2,0.929
+Denmark,3,0.92
+Ireland,4,0.918
+New Zealand,5,0.917
+Norway,6,0.915
+United Kingdom,7,0.914
+Iceland,8,0.912
+Netherlands,9,0.906
+Finland,10,0.905
+Sweden,11,0.904
+United States,12,0.903
+Canada,13,0.899
+Switzerland,14,0.897
+Belgium,15,0.893
+Czech Republic,15,0.893
+Slovenia,16,0.886
+Lithuania,17,0.879
+Israel,18,0.874
+Estonia,19,0.869
+Poland,20,0.866
+Latvia,20,0.866
+South Korea,21,0.862
+Hong Kong,22,0.855
+Austria,23,0.852
+Japan,24,0.848
+Georgia,25,0.845
+Palau,26,0.844
+France,27,0.84
+Greece,28,0.838
+Belarus,28,0.838
+Russia,29,0.832
+Singapore,29,0.832
+Slovakia,30,0.831
+Liechtenstein,31,0.827
+Spain,32,0.824
+Malta,33,0.818
+Argentina,34,0.816
+Hungary,35,0.815
+Kazakhstan,36,0.814
+Cyprus,37,0.808
+Bulgaria,38,0.805
+Chile,39,0.8
+Ukraine,40,0.794
+Luxembourg,41,0.792
+Italy,42,0.791
+Croatia,42,0.791
+Montenegro,43,0.79
+Saudi Arabia,44,0.787
+Fiji,45,0.785
+Cuba,46,0.78
+Serbia,47,0.778
+Barbados,48,0.777
+Tonga,49,0.77
+Mongolia,50,0.766
+Romania,51,0.762
+Portugal,52,0.759
+Bahrain,53,0.758
+Grenada,53,0.758
+Sri Lanka,54,0.749
+Armenia,54,0.749
+Albania,55,0.745
+Iran,56,0.741
+Venezuela,56,0.741
+United Arab Emirates,57,0.738
+Kyrgyzstan,58,0.735
+Uruguay,59,0.733
+Mauritius,60,0.729
+Seychelles,61,0.727
+Bahamas,62,0.726
+Marshall Islands,63,0.723
+Trinidad and Tobago,64,0.722
+Malaysia,65,0.719
+Costa Rica,65,0.719
+Uzbekistan,66,0.718
+Bosnia and Herzegovina,66,0.718
+Andorra,67,0.714
+Jordan,68,0.711
+Moldova,69,0.71
+Azerbaijan,70,0.709
+South Africa,71,0.708
+Oman,72,0.706
+Belize,73,0.705
+Brunei,74,0.704
+Qatar,75,0.698
+Ecuador,76,0.697
+Panama,77,0.692
+Samoa,77,0.692
+Macedonia,78,0.691
+Jamaica,79,0.69
+Turkey,80,0.689
+Peru,80,0.689
+Bolivia,81,0.687
+Brazil,82,0.686
+Saint Kitts and Nevis,83,0.68
+Mexico,84,0.678
+Colombia,85,0.676
+Saint Lucia,85,0.676
+Antigua and Barbuda,85,0.676
+Algeria,86,0.664
+Philippines,87,0.661
+Thailand,87,0.661
+Palestinian National Authority,88,0.66
+Tunisia,89,0.659
+Tajikistan,89,0.659
+Botswana,89,0.659
+Saint Vincent and the Grenadines,90,0.655
+China,91,0.644
+Dominican Republic,92,0.643
+Lebanon,93,0.637
+Suriname,94,0.636
+Paraguay,95,0.631
+Gabon,96,0.628
+Vietnam,97,0.626
+Turkmenistan,97,0.626
+Indonesia,98,0.622
+Kuwait,99,0.62
+Kiribati,99,0.62
+Libya,100,0.616
+Dominica,101,0.613
+Egypt,102,0.604
+Guyana,103,0.596
+Federated States of Micronesia,104,0.59
+Zambia,105,0.58
+El Salvador,105,0.58
+Namibia,106,0.571
+Maldives,107,0.56
+Ghana,108,0.558
+Zimbabwe,108,0.558
+Nicaragua,108,0.558
+São Tomé and Príncipe,109,0.557
+India,110,0.556
+Cape Verde,111,0.555
+Kenya,112,0.551
+Cameroon,113,0.547
+Iraq,114,0.534
+Morocco,115,0.529
+Vanuatu,115,0.529
+Swaziland,116,0.528
+Republic of the Congo,117,0.526
+Uganda,118,0.525
+Guatemala,119,0.514
+Bangladesh,120,0.508
+Togo,121,0.506
+East Timor,122,0.505
+Nepal,123,0.502
+Honduras,123,0.502
+Lesotho,123,0.502
+Angola,124,0.498
+Madagascar,124,0.498
+Democratic Republic of the Congo,125,0.496
+Cambodia,126,0.487
+Laos,127,0.484
+Nigeria,128,0.483
+Comoros,129,0.473
+Benin,130,0.471
+Solomon Islands,131,0.469
+Malawi,132,0.451
+Rwanda,133,0.45
+Bhutan,134,0.445
+Myanmar,135,0.443
+Equatorial Guinea,135,0.443
+Tanzania,136,0.441
+Liberia,137,0.434
+Haiti,138,0.433
+Papua New Guinea,139,0.43
+Ivory Coast,140,0.424
+Burundi,140,0.424
+Afghanistan,141,0.415
+Syria,142,0.412
+Pakistan,143,0.411
+Guinea-Bissau,144,0.392
+Sierra Leone,145,0.39
+Mauritania,146,0.389
+Mozambique,147,0.385
+The Gambia,148,0.372
+Senegal,149,0.368
+Yemen,150,0.349
+Central African Republic,151,0.341
+Guinea,152,0.339
+Sudan,153,0.328
+Ethiopia,154,0.327
+Djibouti,155,0.309
+Chad,156,0.298
+South Sudan,157,0.297
+Mali,158,0.293
+Burkina Faso,159,0.286
+Eritrea,160,0.281
+Niger,161,0.214
