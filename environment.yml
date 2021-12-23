@@ -14,6 +14,7 @@ dependencies:
   - sqlalchemy
   - doit
   - pip
+  - notebook
   - pip:
     - -e .
     - mysql-connector-python
