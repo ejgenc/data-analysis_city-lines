@@ -7,8 +7,8 @@ date: 28/11/2021
 
 > This repository and the code it contains was written by Nisa İrem Kırbaç and Eren Janberk Genç as part of the requirements for completing the "Information Structures and Implications" class.
 
-![Four distinct street networks](media/street-network.webp "City Lines Banner")
-Banner image by [Geoff Boeing](https://geoffboeing.com/2019/11/big-data-urban-morphology/)
+![All line colors, the average line color and the outlier colors in 3D space](media/8_question-eight_4.gif "Colors in 3D space.")
+
 
 ## What is this repository about?
 
