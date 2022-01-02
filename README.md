@@ -81,6 +81,10 @@ You can now investigate the code, code output and the commentary for each questi
 
 Below is a document tree of this repository that can serve as a map for those who wish to explore further.
 
+![The most dominant line color of each country and the percentage by which they are dominant](media/10_question-ten.png "The most dominant line color of each country.")
+
+*A visualization example from the assignment. This styled, stacked and horizontal bar chart shows the most dominant line color(s) for each country and the percentage by which they are dominant.*
+
 --------
 
 ```
